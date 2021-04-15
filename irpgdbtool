@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 # IRPG db conversion tool; converts db version 2.4 -> 3.0
 # Jon Honeycutt, jotun@idlerpg.net, http://idlerpg.net
 # Free for all use, public and private, with retention of copyright notice.
