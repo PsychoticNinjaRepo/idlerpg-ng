@@ -1371,7 +1371,7 @@ sub find_item { # find item for argument player
         if ($ulevel >= $level && $ulevel > int($rps{$u}{item}{ring})) {
             notice("The light of the gods shines down upon you! You have ".
                    "found the level $ulevel Juliet's Glorious Ring of ".
-                   "Sparkliness! You enemies are blinded by both its glory ".
+                   "Sparkliness! Your enemies are blinded by both its glory ".
                    "and their greed as you bring desolation upon them.",
                    $rps{$u}{nick});
             $rps{$u}{item}{ring} = $ulevel."h";
@@ -1395,7 +1395,7 @@ sub find_item { # find item for argument player
             notice("The light of the gods shines down upon you! You have ".
                    "found the level $ulevel Dwyn's Storm Magic Amulet! Your ".
                    "enemies are swept away by an elemental fury before the ".
-                   "war has even begun",$rps{$u}{nick});
+                   "war has even begun.",$rps{$u}{nick});
             $rps{$u}{item}{amulet} = $ulevel."c";
             return;
         }
