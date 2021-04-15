@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # irpg bot v3.1.2 by jotun, jotun@idlerpg.net, et al. See http://idlerpg.net/
+#          v3.1.3 by Bahhumbug, jrd@gerdesas.com
 #
 # Some code within this file was written by authors other than myself. As such,
 # distributing this code or distributing modified versions of this code is
