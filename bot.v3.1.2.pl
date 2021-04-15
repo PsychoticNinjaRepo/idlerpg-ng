@@ -407,6 +407,7 @@ sub parse {
         else { chanmsg("0 users qualified for auto login."); }
         undef(%prev_online);
         undef(%auto_login);
+        loadquestfile();
     }
     elsif ($arg[1] eq '005') {
         if ("@arg" =~ /MODES=(\d+)/) { $opts{modesperline}=$1; }
@@ -1173,6 +1174,7 @@ sub rpcheck { # check levels, update database
             }
             undef(@{$quest{questers}});
             $quest{qtime} = time() + 21600;
+            writequestfile();
         }
         # quest type 2 awards are handled in moveplayers()
     }
@@ -1953,6 +1955,7 @@ sub questpencheck {
             }
             undef(@{$quest{questers}});
             $quest{qtime} = time() + 43200; # 12 hours
+            writequestfile();
         }
     }
 }
@@ -2179,6 +2182,46 @@ sub writequestfile {
         }
     }
     close(QF);
+}
+
+sub loadquestfile {
+    return unless ($opts{writequestfile} && -e $opts{questfilename});
+    open(QF,$opts{questfilename}) or do {
+        chanmsg("Error: Cannot open $opts{questfilename}: $!");
+        return;
+    };
+
+    my %questdata = ();
+    while (my $line = <QF>) {
+        chomp $line;
+        my ($tag,$data) = split(/ /,$line,2);
+        $questdata{$tag} = $data;
+    }
+    return unless defined($questdata{Y});
+
+    $quest{text} = $questdata{T};
+    $quest{type} = $questdata{Y};
+    if ($quest{type} == 1) {
+        $quest{qtime} = $questdata{S};
+    }
+    else {
+        $quest{stage} = $questdata{S};
+        my ($p1x,$p1y,$p2x,$p2y) = split(/ /,$questdata{P});
+        $quest{p1}->[0] = $p1x;
+        $quest{p1}->[1] = $p1y;
+        $quest{p2}->[0] = $p2x;
+        $quest{p2}->[1] = $p2y;
+    }
+    for my $i (0..3) {
+        ($quest{questers}->[$i],) = split(/ /,$questdata{'P'.($i+1)},2);
+        if (!$rps{$quest{questers}->[$i]}{online}) {
+            undef(@{$quest{questers}});
+            last;
+        }
+    }
+    close(QF);
+    writequestfile();
+    chanmsg("*** Previous quest restored ***");
 }
 
 sub goodness {
