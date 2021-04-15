@@ -1958,7 +1958,8 @@ sub questpencheck {
                          "and to tend downwards with great weight and ".
                          "pressure towards hell. Therefore have you drawn ".
                          "yourselves 15 steps closer to that gaping maw."));
-            for $player (grep { $rps{$_}{online} } keys %rps) {
+#            for $player (grep { $rps{$_}{online} } keys %rps) {
+            for $player (@{$quest{questers}}) {
                 my $gain = int(15 * ($opts{rppenstep}**$rps{$player}{level}));
                 $rps{$player}{pen_quest} += $gain;
                 $rps{$player}{next} += $gain;
