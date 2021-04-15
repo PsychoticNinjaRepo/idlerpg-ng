@@ -11,7 +11,7 @@ C got knifed in a dark alley
 C saw an episode of Ally McBeal
 C got turned INSIDE OUT, practically
 C ate a very disagreeable fruit, getting a terrible case of heartburn
-C met up with a mob hitman for not paying his bills
+C met up with a mob hitman for not paying their bills
 C has fallen ill with the black plague
 C was struck by lightning
 C was attacked by a rabid cow
@@ -25,9 +25,9 @@ C was sat on by a giant
 C ate a plate of discounted, day-old sushi
 C got harassed by peer
 C got lost in the woods
-C misplaced his map
-C broke his compass
-C lost his glasses
+C misplaced their map
+C broke their compass
+C lost their glasses
 C walked face-first into a tree
 G found a pair of Nikes
 G caught a unicorn
@@ -47,7 +47,7 @@ G stopped using dial-up
 G invented the wheel
 G gained a sixth sense
 G got a kiss from drwiii
-G had his clothes laundered by a passing fairy
+G had their clothes laundered by a passing fairy
 G was rejuvenated by drinking from a magic stream
 G was bitten by a radioactive spider
 G hit it off with a drunk sorority chick named Jenny

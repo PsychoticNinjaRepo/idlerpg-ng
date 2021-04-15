@@ -822,7 +822,7 @@ sub parse {
                 }
                 else {
                     privmsg("Account $username removed.",$usernick);
-                    chanmsg("$arg[0] removed his account, $username, the ".
+                    chanmsg("$arg[0] removed their account, $username, the ".
                             $rps{$username}{class}.".");
                     delete($rps{$username});
                 }
@@ -1278,9 +1278,9 @@ sub challenge_opp { # pit argument player against random player
                          "pair of boots");
             my $type = $items[rand(@items)];
             if (int($rps{$opp}{item}{$type}) > int($rps{$u}{item}{$type})) {
-                chanmsg(clog("In the fierce battle, $opp dropped his level ".
+                chanmsg(clog("In the fierce battle, $opp dropped their level ".
                              int($rps{$opp}{item}{$type})." $type! $u picks ".
-                             "it up, tossing his old level ".
+                             "it up, tossing their old level ".
                              int($rps{$u}{item}{$type})." $type to $opp."));
                 my $tempitem = $rps{$u}{item}{$type};
                 $rps{$u}{item}{$type}=$rps{$opp}{item}{$type};
@@ -1771,20 +1771,20 @@ sub calamity { # suffer a little one
                      "shield");
         my $type = $items[rand(@items)];
         if ($type eq "amulet") {
-            chanmsg(clog("$player fell, chipping the stone in his amulet! ".
+            chanmsg(clog("$player fell, chipping the stone in their amulet! ".
                          "$player\'s $type loses 10% of its effectiveness."));
         }
         elsif ($type eq "charm") {
-            chanmsg(clog("$player slipped and dropped his charm in a dirty ".
+            chanmsg(clog("$player slipped and dropped their charm in a dirty ".
                          "bog! $player\'s $type loses 10% of its ".
                          "effectiveness."));
         }
         elsif ($type eq "weapon") {
-            chanmsg(clog("$player left his weapon out in the rain to rust! ".
+            chanmsg(clog("$player left their weapon out in the rain to rust! ".
                          "$player\'s $type loses 10% of its effectiveness."));
         }
         elsif ($type eq "tunic") {
-            chanmsg(clog("$player spilled a level 7 shrinking potion on his ".
+            chanmsg(clog("$player spilled a level 7 shrinking potion on their ".
                          "tunic! $player\'s $type loses 10% of its ".
                          "effectiveness."));
         }
@@ -1794,7 +1794,7 @@ sub calamity { # suffer a little one
                          "effectiveness."));
         }
         else {
-            chanmsg(clog("$player burned a hole through his leggings while ".
+            chanmsg(clog("$player burned a hole through their leggings while ".
                          "ironing them! $player\'s $type loses 10% of its ".
                          "effectiveness."));
         }
@@ -1839,7 +1839,7 @@ sub godsend { # bless the unworthy
                          "$player\'s $type gains 10% effectiveness."));
         }
         elsif ($type eq "weapon") {
-            chanmsg(clog("$player sharpened the edge of his weapon! ".
+            chanmsg(clog("$player sharpened the edge of their weapon! ".
                          "$player\'s $type gains 10% effectiveness."));
         }
         elsif ($type eq "tunic") {
@@ -1847,7 +1847,7 @@ sub godsend { # bless the unworthy
                          "tunic! $player\'s $type gains 10% effectiveness."));
         }
         elsif ($type eq "shield") {
-            chanmsg(clog("$player reinforced his shield with a dragon's ".
+            chanmsg(clog("$player reinforced their shield with a dragon's ".
                          "scales! $player\'s $type gains 10% effectiveness."));
         }
         else {
@@ -2116,9 +2116,9 @@ sub collision_fight {
                          "pair of boots");
             my $type = $items[rand(@items)];
             if (int($rps{$opp}{item}{$type}) > int($rps{$u}{item}{$type})) {
-                chanmsg("In the fierce battle, $opp dropped his level ".
+                chanmsg("In the fierce battle, $opp dropped their level ".
                         int($rps{$opp}{item}{$type})." $type! $u picks it up, ".
-                        "tossing his old level ".int($rps{$u}{item}{$type}).
+                        "tossing their old level ".int($rps{$u}{item}{$type}).
                         " $type to $opp.");
                 my $tempitem = $rps{$u}{item}{$type};
                 $rps{$u}{item}{$type}=$rps{$opp}{item}{$type};
@@ -2212,7 +2212,7 @@ sub evilness {
             $rps{$target}{item}{$type} = $tempitem;
             chanmsg(clog("$me stole $target\'s level ".
                          int($rps{$me}{item}{$type})." $type while they were ".
-                         "sleeping! $me leaves his old level ".
+                         "sleeping! $me leaves their old level ".
                          int($rps{$target}{item}{$type})." $type behind, ".
                          "which $target then takes."));
         }
@@ -2224,9 +2224,9 @@ sub evilness {
     }
     else { # being evil only pays about half of the time...
         my $gain = 1 + int(rand(5));
-        chanmsg(clog("$me is forsaken by his evil god. ".
+        chanmsg(clog("$me is forsaken by their evil god. ".
                      duration(int($rps{$me}{next} * ($gain/100)))." is added ".
-                     "to his clock."));
+                     "to their clock."));
         $rps{$me}{next} = int($rps{$me}{next} * (1 + ($gain/100)));
         chanmsg("$me reaches next level in ".duration($rps{$me}{next}).".");
     }
