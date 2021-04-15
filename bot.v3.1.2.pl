@@ -92,6 +92,10 @@ GetOptions(\%opts,
     "rpbase=i",
     "rppenstep=f",
     "dbfile|irpgdb|db|d=s",
+    "newuserreports",
+    "newuserdest=s",
+    "newuserfromname=s",
+    "newuserfromaddr=s",
 ) or debug("Error: Could not parse command line. Try $0 --help\n",1);
 
 $opts{help} and do { help(); exit 0; };
@@ -538,6 +542,12 @@ sub parse {
                                      "pen_logout","pen_logout") {
                             $rps{$arg[4]}{$pen} = 0;
                         }
+			if ($opts{newuserreports}) {
+                            my $char = $arg[4];
+                            my $class = "@arg[6..$#arg]";
+                            my $host = $arg[0];
+                            report_new ($char, $class, $usernick, $host);
+			}
                         chanmsg("Welcome $usernick\'s new player $arg[4], the ".
                                 "@arg[6..$#arg]! Next level in ".
                                 duration($opts{rpbase}).".");
@@ -2399,6 +2409,35 @@ sub readconfig {
             else { $opts{$key} = $val; }
         }
     }
+}
+
+sub report_new ($$$$) {
+    my ($char, $class, $nick, $host) = @_;
+
+# mail subject
+    my $subject = "New IdleRPG Character";
+
+# name of the mail program being used
+    my $mail_prog = "/usr/lib/sendmail";
+
+# open a pipe to the mail program, allowing us to feed the mail as stdin text
+    open (MAILPIPE, "|$mail_prog $opts{newuserdest}") || die ("can't open pipe to $mail_prog");
+
+# send mail header
+    print MAILPIPE "To: $opts{newuserdest}\n";
+    print MAILPIPE "From: \"$opts{newuserfromname}\" <$opts{newuserfromaddr}>\n";
+    print MAILPIPE "Subject: $subject\n";
+    print MAILPIPE "\n";
+    print MAILPIPE ("A new IdleRPG character has been created:\n");
+    print MAILPIPE "\n";
+    print MAILPIPE ("Char:      $char\n");
+    print MAILPIPE ("Class:     $class\n");
+    print MAILPIPE ("Nick:      $nick\n");
+    print MAILPIPE ("Host:      $host\n");
+    print MAILPIPE "\n";
+
+    # close the mail pipe, sending the message on
+    close (MAILPIPE);
 }
 
 # signal handler to permit sane quitting from the command line
