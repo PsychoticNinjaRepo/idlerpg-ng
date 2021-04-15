@@ -218,6 +218,8 @@ print "\n".debug("Becoming a daemon...")."\n";
 daemonize();
 
 $SIG{HUP} = "readconfig"; # sighup = reread config file
+$SIG{INT} = "writedb";    # sigint = force write of players database
+$SIG{TERM} = "quit";    # sigterm = write db and quit game
 
 CONNECT: # cheese.
 
@@ -325,6 +327,7 @@ sub parse {
             sts("WHO $opts{botchan}");
             (my $opcmd = $opts{botopcmd}) =~ s/%botnick%/$opts{botnick}/eg;
             sts($opcmd);
+            chanmsg ("*** IdleRPG has returned ***");
             $lasttime = time(); # start rpcheck()
         }
     }
@@ -845,6 +848,8 @@ sub parse {
                 else {
                     $opts{reconnect} = 0;
                     writedb();
+                    chanmsg ("IdleRPG is taking a short break and shall return shortly.");
+                    fq ();
                     sts("QUIT :DIE from $arg[0]",1);
                 }
             }
@@ -915,6 +920,8 @@ sub parse {
                 }
                 else {
                     writedb();
+                    chanmsg("*** IdleRPG is restarting ***");
+                    fq();
                     sts("QUIT :RESTART from $arg[0]",1);
                     close($sock);
                     exec("perl $0");
@@ -2349,4 +2356,13 @@ sub readconfig {
             else { $opts{$key} = $val; }
         }
     }
+}
+
+# signal handler to permit sane quitting from the command line
+sub quit {
+    $opts{reconnect} = 0;
+    writedb();
+    chanmsg ("IdleRPG is taking a short break and shall return shortly.");
+    fq ();
+    sts("QUIT :DIE from terminal",1);
 }
