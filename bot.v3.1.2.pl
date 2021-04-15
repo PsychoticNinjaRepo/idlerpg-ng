@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/env perl
 # irpg bot v3.1.2 by jotun, jotun@idlerpg.net, et al. See http://idlerpg.net/
 #
 # Some code within this file was written by authors other than myself. As such,
