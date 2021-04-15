@@ -1967,6 +1967,8 @@ sub questpencheck {
             undef(@{$quest{questers}});
             $quest{qtime} = time() + 43200; # 12 hours
             writequestfile();
+            # follow line in place on freenode; unknown purpose
+            last;
         }
     }
 }
