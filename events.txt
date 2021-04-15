@@ -20,7 +20,7 @@ C was set on fire
 C was decapitated, temporarily..
 C was tipped by a cow
 C was bucked from a horse
-C was bitten by a møøse
+C was bitten by a moose
 C was sat on by a giant
 C ate a plate of discounted, day-old sushi
 C got harassed by peer
@@ -29,6 +29,7 @@ C misplaced their map
 C broke their compass
 C lost their glasses
 C walked face-first into a tree
+C fell ill because their community continues to disregard mask mandates
 G found a pair of Nikes
 G caught a unicorn
 G discovered a secret, underground passage
@@ -36,7 +37,7 @@ G was taught to run quickly by a secret tribe of pygmies that know how to, among
 G discovered caffeinated coffee
 G grew an extra leg
 G was visited by a very pretty nymph
-G found kitten
+G found a kitten
 G learned Perl
 G found an exploit in the IRPG code
 G tamed a wild horse
@@ -52,6 +53,7 @@ G was rejuvenated by drinking from a magic stream
 G was bitten by a radioactive spider
 G hit it off with a drunk sorority chick named Jenny
 G was accepted into Pi Beta Phi
+G got their Covid-19 vaccination
 Q2 225 415 280 460 lay waste to the Towers of Ankh-Allor, wherein lies the terrible sorceror Croocq
 Q1 locate the centuries-lost tomes of the grim prophet Haplashak Mhadhu
 Q2 400 475 480 380 explore and chart the dark lands of T'rnalvph
