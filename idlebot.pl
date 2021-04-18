@@ -2419,7 +2419,7 @@ sub report_new ($$$$) {
     my ($char, $class, $nick, $host) = @_;
 
 # mail subject
-    my $subject = "New IdleRPG Character";
+    my $subject = "New IdleRPG-NG Character";
 
 # name of the mail program being used
     my $mail_prog = "/usr/lib/sendmail";
