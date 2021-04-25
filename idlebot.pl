@@ -97,6 +97,7 @@ GetOptions(\%opts,
     "newuserdest=s",
     "newuserfromname=s",
     "newuserfromaddr=s",
+    "gametitle=s",
 ) or debug("Error: Could not parse command line. Try $0 --help\n",1);
 
 $opts{help} and do { help(); exit 0; };
@@ -332,7 +333,7 @@ sub parse {
             sts("WHO $opts{botchan}");
             (my $opcmd = $opts{botopcmd}) =~ s/%botnick%/$opts{botnick}/eg;
             sts($opcmd);
-            chanmsg ("*** IdleRPG has returned ***");
+            chanmsg ("*** $opts{gametitle} ver $version has returned ***");
             $lasttime = time(); # start rpcheck()
         }
     }
@@ -433,7 +434,7 @@ sub parse {
         if (lc($arg[2]) eq lc($opts{botnick})) { # to us, not channel
             $arg[3] = lc(substr($arg[3],1)); # lowercase, strip leading :
             if ($arg[3] eq "\1version\1") {
-                notice("\1VERSION IRPG bot v$version by jotun; ".
+                notice("\1VERSION $opts{gametitle} bot v$version by jotun/jrd; ".
                        "http://idlerpg.net/\1",$usernick);
             }
             elsif ($arg[3] eq "peval") {
@@ -860,7 +861,7 @@ sub parse {
                 else {
                     $opts{reconnect} = 0;
                     writedb();
-                    chanmsg ("IdleRPG is taking a short break and shall return shortly.");
+                    chanmsg ("$opts{gametitle} is taking a short break and shall return shortly.");
                     fq ();
                     sts("QUIT :DIE from $arg[0]",1);
                 }
@@ -932,7 +933,7 @@ sub parse {
                 }
                 else {
                     writedb();
-                    chanmsg("*** IdleRPG is restarting ***");
+                    chanmsg("*** $opts{gametitle} ver $version is restarting ***");
                     fq();
                     sts("QUIT :RESTART from $arg[0]",1);
                     close($sock);
@@ -1192,7 +1193,7 @@ sub rpcheck { # check levels, update database
     if ($rpreport && $rpreport%43200==0) { # 12 hours
         my @u = sort { $rps{$b}{level} <=> $rps{$a}{level} ||
                        $rps{$a}{next}  <=> $rps{$b}{next} } keys(%rps);
-        chanmsg("Idle RPG Top Players:") if @u;
+        chanmsg("$opts{gametitle} Top Players:") if @u;
         for my $i (0..2) {
             $#u >= $i and
             chanmsg("$u[$i], the level $rps{$u[$i]}{level} ".
@@ -2419,7 +2420,7 @@ sub report_new ($$$$) {
     my ($char, $class, $nick, $host) = @_;
 
 # mail subject
-    my $subject = "New IdleRPG-NG Character";
+    my $subject = "New $opts{gametitle} Character";
 
 # name of the mail program being used
     my $mail_prog = "/usr/lib/sendmail";
@@ -2432,7 +2433,7 @@ sub report_new ($$$$) {
     print MAILPIPE "From: \"$opts{newuserfromname}\" <$opts{newuserfromaddr}>\n";
     print MAILPIPE "Subject: $subject\n";
     print MAILPIPE "\n";
-    print MAILPIPE ("A new IdleRPG character has been created:\n");
+    print MAILPIPE ("A new $opts{gametitle} character has been created:\n");
     print MAILPIPE "\n";
     print MAILPIPE ("Char:      $char\n");
     print MAILPIPE ("Class:     $class\n");
@@ -2448,7 +2449,7 @@ sub report_new ($$$$) {
 sub quit {
     $opts{reconnect} = 0;
     writedb();
-    chanmsg ("IdleRPG is taking a short break and shall return shortly.");
+    chanmsg ("$opts{gametitle} is taking a short break and shall return shortly.");
     fq ();
     sts("QUIT :DIE from terminal",1);
 }
