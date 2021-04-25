@@ -24,7 +24,7 @@
 #       execute any command, or possibly even change your password. I sincerely
 #       suggest that you exercise extreme caution when giving someone admin
 #       access to your bot, or that you disable the PEVAL command for non-owner
-#       accounts in your config file, .irpg.conf
+#       accounts in your config file, irpg.conf
 
 use strict;
 use warnings;
@@ -39,7 +39,7 @@ readconfig();
 
 my $version = "3.1.2";
 
-# command line overrides .irpg.conf
+# command line overrides irpg.conf
 GetOptions(\%opts,
     "help|h",
     "verbose|v",
@@ -2385,13 +2385,13 @@ sub writedb {
 }
 
 sub readconfig {
-    if (! -e ".irpg.conf") {
-        debug("Error: Cannot find .irpg.conf. Copy it to this directory, ".
+    if (! -e "irpg.conf") {
+        debug("Error: Cannot find irpg.conf. Copy it to this directory, ".
               "please.",1);
     }
     else {
-        open(CONF,"<.irpg.conf") or do {
-            debug("Failed to open config file .irpg.conf: $!",1);
+        open(CONF,"<irpg.conf") or do {
+            debug("Failed to open config file irpg.conf: $!",1);
         };
         my($line,$key,$val);
         while ($line=<CONF>) {
@@ -2404,7 +2404,7 @@ sub readconfig {
             if (lc($val) eq "on" || lc($val) eq "yes") { $val = 1; }
             elsif (lc($val) eq "off" || lc($val) eq "no") { $val = 0; }
             if ($key eq "die") {
-                die("Please edit the file .irpg.conf to setup your bot's ".
+                die("Please edit the file irpg.conf to setup your bot's ".
                     "options. Also, read the README file if you haven't ".
                     "yet.\n");
             }
