@@ -886,7 +886,7 @@ sub parse {
                 else {
                     backup();
                     privmsg("$opts{dbfile} copied to ".
-                            ".dbbackup/$opts{dbfile}".time(),$usernick,1);
+                            ".dbbackup/$opts{dbfile}-".time(),$usernick,1);
                 }
             }
             elsif ($arg[3] eq "pause") {
@@ -1989,10 +1989,10 @@ sub clog {
 sub backup() {
     if (! -d ".dbbackup/") { mkdir(".dbbackup",0700); }
     if ($^O ne "MSWin32") {
-        system("cp $opts{dbfile} .dbbackup/$opts{dbfile}".time());
+        system("cp $opts{dbfile} .dbbackup/$opts{dbfile}-".time());
     }
     else {
-        system("copy $opts{dbfile} .dbbackup\\$opts{dbfile}".time());
+        system("copy $opts{dbfile} .dbbackup\\$opts{dbfile}-".time());
     }
 }
 
