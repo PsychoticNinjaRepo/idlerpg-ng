@@ -37,7 +37,7 @@ my %opts;
 
 readconfig();
 
-my $version = "3.1.2";
+my $version = "3.1.3";
 
 # command line overrides irpg.conf
 GetOptions(\%opts,
