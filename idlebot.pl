@@ -560,6 +560,9 @@ sub parse {
                                 "can idle the longest. As such, talking in ".
                                 "the channel, parting, quitting, and changing ".
                                 "nicks all penalize you.",$usernick);
+                        privmsg("WARNING: This is a development version of ".
+                                "the game and as such may be stopped or even ".
+                                "without warning.",$usernick);
                         if ($opts{phonehome}) {
                             my $tempsock = IO::Socket::INET->new(PeerAddr=>
                                 "jotun.ultrazone.org:80");
