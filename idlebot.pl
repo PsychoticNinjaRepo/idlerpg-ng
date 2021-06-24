@@ -150,6 +150,7 @@ if (! -e $opts{dbfile}) {
     $uname = length($uname)?$uname:$opts{owner};
     print "Enter a character class for this account: ";
     chomp(my $uclass = <STDIN>);
+    $uclass =~ s/^the //i;
     $rps{$uname}{class} = substr($uclass,0,30);
     print "Enter a password for this account: ";
     if ($^O ne "MSWin32") {
