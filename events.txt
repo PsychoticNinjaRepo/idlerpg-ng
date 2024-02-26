@@ -30,6 +30,7 @@ C broke their compass
 C lost their glasses
 C walked face-first into a tree
 C fell ill because their community continues to disregard mask mandates
+C tried using Wayland and discovered they couldn't log out, shut down or reboot without SysRQ
 G found a pair of Nikes
 G caught a unicorn
 G discovered a secret, underground passage
@@ -54,6 +55,7 @@ G was bitten by a radioactive spider
 G hit it off with a drunk sorority chick named Jenny
 G was accepted into Pi Beta Phi
 G got their Covid-19 vaccination
+G tried their desktop environment's implementation of Wayland and it ran flawlessly
 Q2 225 415 280 460 lay waste to the Towers of Ankh-Allor, wherein lies the terrible sorceror Croocq
 Q1 locate the centuries-lost tomes of the grim prophet Haplashak Mhadhu
 Q2 400 475 480 380 explore and chart the dark lands of T'rnalvph
